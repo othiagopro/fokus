@@ -3,6 +3,11 @@ const formAdicionarTarefa = document.querySelector('.app__form-add-task')
 const textArea = document.querySelector('.app__form-textarea')
 const ulTarefas = document.querySelector('.app__section-task-list')
 const tarefas = JSON.parse(localStorage.getItem('tarefas')) || []
+const btnCancelar = document.querySelector('.app__form-footer__button--cancel')
+
+function atualizarTarefas () {
+    localStorage.setItem('tarefas', JSON.stringify(tarefas))
+}
 
 function criarElementoTarefa(tarefa) {
     const li = document.createElement('li')
@@ -25,6 +30,7 @@ function criarElementoTarefa(tarefa) {
     botao.classList.add('app_button-edit')
 
     botao.onclick = () => {
+        // debugger || console.log
         const novaDescricao = prompt("Qual é o novo nome da tarefa?")
         if (novaDescricao) {            
             paragrafo.textContent = novaDescricao
@@ -56,7 +62,7 @@ formAdicionarTarefa.addEventListener('submit', (evento) =>{
     tarefas.push(tarefa)
     const elementoTarefa = criarElementoTarefa(tarefa)
     ulTarefas.append(elementoTarefa)
-    localStorage.setItem('tarefas', JSON.stringify(tarefas))
+    atualizarTarefas
     textArea.value = ''
     formAdicionarTarefa.classList.add('hidden')
 })
@@ -65,3 +71,9 @@ tarefas.forEach(tarefa  => {
     const elementoTarefa = criarElementoTarefa(tarefa)
     ulTarefas.append(elementoTarefa)
 });
+
+const limparFormulario = () => {
+    textArea.value = '';  // Limpe o conteúdo do textarea
+    formAdicionarTarefa.classList.add('hidden');  // Adicione a classe 'hidden' ao formulário para escondê-lo
+}
+btnCancelar.addEventListener('click', limparFormulario);
