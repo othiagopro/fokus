@@ -36,6 +36,9 @@ function criarElementoTarefa(tarefa) {
             paragrafo.textContent = novaDescricao
             tarefa.descricao = novaDescricao
             atualizarTarefas()
+            alert("Tarefa atualizada com sucesso!")
+        } else {
+            alert("Atualização cancelada ou valor inválido!")
         }
     }
 
