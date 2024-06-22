@@ -70,8 +70,6 @@ function criarElementoTarefa(tarefa) {
     }
 
     return li
-
-    
 }   
 
 btnAdicionarTarefa.addEventListener('click', () => {
